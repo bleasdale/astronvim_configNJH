@@ -142,12 +142,12 @@ smap <silent><expr> <C-f> luasnip#choice_active() ? '<Plug>luasnip-next-choice' 
 ]])
 
 -- stylua-nvim mapping to format lua files
-km.set(
-  "n",
-  "<leader>st",
-  require("stylua-nvim").format_file,
-  { noremap = true, silent = true, desc = "Format lua file with Stylua." }
-)
+-- km.set(
+--   "n",
+--   "<leader>st",
+--   require("stylua-nvim").format_file,
+--   { noremap = true, silent = true, desc = "Format lua file with Stylua." }
+-- )
 
 -- Insert mode map to escape out of insert mode, type undo and reenter insert mode
 km.set("i", "<C-U>", "<ESC>ui", { desc = "From insert mode, exit to normal, undo, reenter insert mode." })
