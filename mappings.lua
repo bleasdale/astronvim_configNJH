@@ -1,40 +1,55 @@
-------------------
--- Key Mappings --
-------------------
-
--- Leaders
--- vim.g.mapleader = " "
--- vim.g.maplocalleader = " "
-
--- convenience variable
-local km = vim.keymap
+----------------------------
+-- AstroNvim Key Mappings --
+----------------------------
 
 return {
   n = {
-    [";"]               = { ":", desc = "Swap ; for :" },
-    [":"]               = { ";", desc = "Swap : for ;" },
-    ["<leader>ev"]      = { ":vsplit ~/.config/nvim/lua/user/init.lua<CR>", silent = true, desc = "Edit config shortcut." },
-    ["<leader>cd"]      = { ":lcd %:h<CR>", desc = "Change the cwd to the location of the current buffer, but only for the current buffer." },
-    ["<leader><UP>"]    = { ":resize +5<CR>", silent = true, desc = "Increase vertical window size." },
-    ["<leader><DOWN>"]  = { ":resize -5<CR>", silent = true, desc = "Decrease vertical window size." },
+    [";"] = { ":", desc = "Swap ; for :" },
+    [":"] = { ";", desc = "Swap : for ;" },
+    ["<leader>ev"] = { ":vsplit ~/.config/nvim/lua/user/init.lua<CR>", silent = true, desc = "Edit config shortcut." },
+    ["<leader>cd"] = {
+      ":lcd %:h<CR>",
+      desc = "Change the cwd to the location of the current buffer, but only for the current buffer.",
+    },
+    ["<leader><UP>"] = { ":resize +5<CR>", silent = true, desc = "Increase vertical window size." },
+    ["<leader><DOWN>"] = { ":resize -5<CR>", silent = true, desc = "Decrease vertical window size." },
     ["<leader><RIGHT>"] = { ":vertical resize +5<CR>", silent = true, desc = "Increase window width." },
-    ["<leader><LEFT>"]  = { ":vertical resize -5<CR>", silent = true, desc = "Decrease window width." },
-    ["<leader>h"]       = { ":wincmd h<CR>", desc = "Move focus to window on the left." },
-    ["<leader>j"]       = { ":wincmd j<CR>", desc = "Move focus to window below" },
-    ["<leader>l"]       = { ":wincmd l<CR>", desc = "Move focus to window on the right." },
-    ["<leader>k"]       = { ":wincmd k<CR>", desc = "Move focus to window above." },
-    ["<leader>bn"]      = { "<cmd>enew<CR>", desc = "New buffer." },
-    ["<leader>n"]       = { ":bn<CR>", desc = "Show the next buffer." },
-    ["<leader>p"]       = { ":bp<CR>", desc = "Show the previous buffer." },
-    ["<leader>zbb"]     = { "<cmd> lua buf_kill(0, true)<CR>", silent = true, desc = "Force delete the buffer, but leave the window open." }
-    ["<c-j>"]           = { ":m .+1<CR>==", silent = true, desc = "Bubble line down" },
-    ["<c-k>"]           = { ":m .-2<CR>==", silent = true, desc = "Bubble line up" },
+    ["<leader><LEFT>"] = { ":vertical resize -5<CR>", silent = true, desc = "Decrease window width." },
+    ["<leader>h"] = { ":wincmd h<CR>", desc = "Move focus to window on the left." },
+    ["<leader>j"] = { ":wincmd j<CR>", desc = "Move focus to window below" },
+    ["<leader>l"] = { ":wincmd l<CR>", desc = "Move focus to window on the right." },
+    ["<leader>k"] = { ":wincmd k<CR>", desc = "Move focus to window above." },
+    ["<leader>bn"] = { "<cmd>enew<CR>", desc = "New buffer." },
+    ["<leader>n"] = { ":bn<CR>", desc = "Show the next buffer." },
+    ["<leader>p"] = { ":bp<CR>", desc = "Show the previous buffer." },
+    ["<leader>zbb"] = {
+      "<cmd> lua buf_kill(0, true)<CR>",
+      silent = true,
+      desc = "Force delete the buffer, but leave the window open.",
+    },
+    ["<c-j>"] = { ":m .+1<CR>==", silent = true, desc = "Bubble line down" },
+    ["<c-k>"] = { ":m .-2<CR>==", silent = true, desc = "Bubble line up" },
+    ["<leader><CR>"] = { ":noh<CR><ESC>", silent = true, desc = "Remove search highlighting" },
+    ["<leader>tN"] = { ":tabnew<CR>", desc = "Open new tab." },
+    ["<leader>tc"] = { ":tabclose<CR>", desc = "Close tab." },
+    ["<leader>tn"] = { ":tabnext<CR>", desc = "Move focus to next tab." },
+    ["<leader>tp"] = { ":tabprevious<CR>", desc = "Move focus to previous tab." },
+    ["<leader>1"] = { "1gt", desc = "Go to tab number 1." },
+    ["<leader>2"] = { "2gt", desc = "Go to tab number 2." },
+    ["<leader>3"] = { "3gt", desc = "Go to tab number 3." },
+    ["<leader>4"] = { "4gt", desc = "Go to tab number 4." },
+    ["<leader>5"] = { "5gt", desc = "Go to tab number 5." },
+    ["<leader>6"] = { "6gt", desc = "Go to tab number 6." },
+    ["<leader>7"] = { "7gt", desc = "Go to tab number 7." },
+    ["<leader>8"] = { "8gt", desc = "Go to tab number 8." },
+    ["<leader>9"] = { "9gt", desc = "Go to tab number 9." },
   },
   i = {
     ["<C-j>"] = { "DOWN", desc = "Move down in insert mode." },
     ["<C-l>"] = { "RIGHT", desc = "Move right in insert mode." },
     ["<C-k>"] = { "UP", desc = "Move up in insert mode." },
-    ["<C-h"] = { "LEFT", desc = "Move left in insert mode." },
+    ["<C-h>"] = { "LEFT", desc = "Move left in insert mode." },
+    ["<C-U>"] = { "<ESC>ui", desc = "From insert mode, exit to normal, undo, reenter insert mode." },
   },
   c = {
     ["<C-h>"] = { "<LEFT>", desc = "Move left in command mode." },
@@ -43,88 +58,8 @@ return {
     ["<C-k>"] = { "UP", desc = "Move up in command mode." },
   },
   v = {
-
     ["<c-j>"] = { ":m '>+1<CR>==gv=gv", silent = true, desc = "Bubble line down" },
     ["<c-k>"] = { ":m '<-2<CR>==gv=gv", silent = true, desc = "Bubble line up" },
+    ["y"] = { "ygv<ESC>", desc = "Yank and put cursor back." },
   },
 }
-
-
--- clear search highlighting
-km.set("n", "<leader><CR>", ":noh<CR><ESC>", { silent = true, desc = "Remove search highlighting" })
-
--- tabs
-km.set("n", "<leader>tN", ":tabnew<CR>", { desc = "Open new tab." })
-km.set("n", "<leader>tc", ":tabclose<CR>", { desc = "Close tab." })
-km.set("n", "<leader>tn", ":tabnext<CR>", { desc = "Move focus to next tab." })
-km.set("n", "<leader>tp", ":tabprevious<CR>", { desc = "Move focus to previous tab." })
-km.set("n", "<leader>1", "1gt", { desc = "Go to tab number 1." })
-km.set("n", "<leader>2", "2gt", { desc = "Go to tab number 2." })
-km.set("n", "<leader>3", "3gt", { desc = "Go to tab number 3." })
-km.set("n", "<leader>4", "4gt", { desc = "Go to tab number 4." })
-km.set("n", "<leader>5", "5gt", { desc = "Go to tab number 5." })
-km.set("n", "<leader>6", "6gt", { desc = "Go to tab number 6." })
-km.set("n", "<leader>7", "7gt", { desc = "Go to tab number 7." })
-km.set("n", "<leader>8", "8gt", { desc = "Go to tab number 8." })
-km.set("n", "<leader>9", "9gt", { desc = "Go to tab number 9." })
-
--- Make visual yanks place the cursor back where it started
-km.set("v", "y", "ygv<ESC>", { desc = "Yank and put cursor back." })
-
--- call :LazyGit
-km.set("n", "<leader>lg", ":LazyGit<CR>", { desc = "Open a lazygit floating window in the current working directory." })
-
--- telescope related maps
--- See `:help telescope.builtin`
-km.set("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
-km.set("n", "<leader><space>", require("telescope.builtin").buffers, { desc = "[ ] Find existing buffers" })
-km.set("n", "<leader>/", function()
-  -- You can pass additional configuration to telescope to change theme, layout, etc.
-  require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-    winblend = 10,
-    previewer = false,
-  }))
-end, { desc = "[/] Fuzzily search in current buffer]" })
-
-km.set("n", "<leader>sf", require("telescope.builtin").find_files, { desc = "[S]earch [F]iles" })
-km.set("n", "<leader>sh", require("telescope.builtin").help_tags, { desc = "[S]earch [H]elp" })
-km.set("n", "<leader>sw", require("telescope.builtin").grep_string, { desc = "[S]earch current [W]ord" })
-km.set("n", "<leader>sg", require("telescope.builtin").live_grep, { desc = "[S]earch by [G]rep" })
-km.set("n", "<leader>sd", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
-
--- Telescope file browser
-km.set("n", "<leader>fb", function()
-  require("telescope").extensions.file_browser.file_browser()
-end, { desc = "Open Telescope file browser" })
-
--- Luasnip
-vim.cmd([[
-" Use Tab to expand and jump through snippets
-imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'
-smap <silent><expr> <Tab> luasnip#jumpable(1) ? '<Plug>luasnip-jump-next' : '<Tab>'
-
-" Use Shift-Tab to jump backwards through snippets
-imap <silent><expr> <S-Tab> luasnip#jumpable(-1) ? '<Plug>luasnip-jump-prev' : '<S-Tab>'
-smap <silent><expr> <S-Tab> luasnip#jumpable(-1) ? '<Plug>luasnip-jump-prev' : '<S-Tab>'
-
-" Cycle forward through choice nodes with Control-f (for example)
-imap <silent><expr> <C-f> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-f>'
-smap <silent><expr> <C-f> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-f>'
-]])
-
--- stylua-nvim mapping to format lua files
--- km.set(
---   "n",
---   "<leader>st",
---   require("stylua-nvim").format_file,
---   { noremap = true, silent = true, desc = "Format lua file with Stylua." }
--- )
-
--- Insert mode map to escape out of insert mode, type undo and reenter insert mode
-km.set("i", "<C-U>", "<ESC>ui", { desc = "From insert mode, exit to normal, undo, reenter insert mode." })
-
--- window-picker
--- km.set("n", "<leader>g", function()
---   local picked_window_id = require("window-picker").pick_window() or vim.api.nvim_get_current_win()
---   vim.api.nvim_set_current_win(picked_window_id)
--- end, { desc = "Pick a window" })
