@@ -84,9 +84,25 @@ return {
       "lervag/vimtex",
       lazy = false,
       init = function()
+        vim.g.vimtex_compiler_method = "latexmk"
+        vim.g.vimtex_compiler_latexmk = {
+          callback = 1,
+          continuous = 1,
+          executable = "latexmk",
+          options = {
+            "-shell-escape",
+            "-verbose",
+            "-file-line-error",
+            "-synctex=1",
+            "-interaction=nonstopmode",
+          },
+        }
+        vim.g.vimtex_compiler_latexmk_engines = {
+          "lualatex",
+        }
         vim.g.vimtex_view_general_viewer = "SumatraPDF"
         vim.g.vimtex_view_general_options = "-reuse-instance -forward-search @tex @line @pdf"
-        vim.g.vimtex_view_method = "SumatraPDF"
+        -- vim.g.vimtex_view_method = "SumatraPDF"
         -- add which-key mapping descriptions for VimTex
         vim.api.nvim_create_autocmd("FileType", {
           desc = "Set up VimTex Which-Key descriptions",
